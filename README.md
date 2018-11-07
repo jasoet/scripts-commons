@@ -1,4 +1,7 @@
 # Kotlin Scripts Commons Helper
+[![Build Status](https://travis-ci.org/jasoet/scripts-commons.svg?branch=master)](https://travis-ci.org/jasoet/scripts-commons)
+[![codecov](https://codecov.io/gh/jasoet/scripts-commons/branch/master/graph/badge.svg)](https://codecov.io/gh/jasoet/scripts-commons)
+[![JCenter](https://api.bintray.com/packages/jasoet/fun/scripts-commons/images/download.svg)](https://bintray.com/jasoet/fun/scripts-commons/_latestVersion)
 
 Kotlin Helper to manage several cloud related config. Will be useful for configuring cloud credentials inside docker image.
 
