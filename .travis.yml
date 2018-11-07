@@ -15,8 +15,11 @@ cache:
   - $HOME/.gradle/wrapper/
 
 before_install:
-- sudo apt-get update --fix-missing && apt-get install ruby ruby-dev build-essential unzip curl git jq vim -y
+- sudo apt-get update --fix-missing && sudo apt-get install ruby ruby-dev build-essential unzip curl git jq vim -y
 - curl -L https://omnitruck.chef.io/install.sh | sudo bash -s -- -v 2.4.17 -P chefdk
 
 script:
 - ./gradlew clean build
+
+after_success:
+- ./gradlew bintrayUpload
