@@ -23,3 +23,4 @@ script:
 
 after_success:
 - ./gradlew bintrayUpload
+- bash <(curl -s https://codecov.io/bash) -t 9dbdd336-0b99-4b04-b019-0066e702d614
