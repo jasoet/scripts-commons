@@ -16,8 +16,6 @@
 
 package id.jasoet.scripts
 
-import arrow.core.Try
-import arrow.core.getOrElse
 import java.io.File
 import java.util.Base64
 
@@ -34,11 +32,19 @@ internal fun String.createDirs(): Boolean {
 }
 
 internal fun getSystemEnv(envKey: String): String? {
-    return Try { System.getenv(envKey) }.getOrElse { null }
+    return try {
+        System.getenv(envKey)
+    } catch (se: SecurityException) {
+        null
+    }
 }
 
 internal fun getSystemProperty(propertyKey: String): String? {
-    return Try { System.getProperty(propertyKey) }.getOrElse { null }
+    return try {
+        System.getProperty(propertyKey)
+    } catch (se: SecurityException) {
+        null
+    }
 }
 
 fun optionalEnv(key: String): String? {

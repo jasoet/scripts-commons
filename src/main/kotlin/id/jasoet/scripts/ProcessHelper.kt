@@ -18,7 +18,6 @@ package id.jasoet.scripts
 
 import id.jasoet.funkommand.execute
 import java.io.File
-import java.io.FileWriter
 import java.io.PrintWriter
 
 object ProcessHelper {

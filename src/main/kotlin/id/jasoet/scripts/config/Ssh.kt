@@ -26,9 +26,9 @@ object Ssh {
     private val defaultDir = "${homeDir()}/.ssh"
 
     operator fun invoke(
-        encodedCreds: String,
-        config: String = defaultConfig,
-        directory: String = defaultDir
+            encodedCreds: String,
+            config: String = defaultConfig,
+            directory: String = defaultDir
     ): Pair<String, String> {
         directory.createDirs()
         val creds = encodedCreds.base64Decode()

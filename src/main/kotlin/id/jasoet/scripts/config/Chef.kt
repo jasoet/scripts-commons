@@ -24,13 +24,13 @@ import id.jasoet.scripts.writeToFile
 
 object Chef {
     operator fun invoke(
-        serverUrl: String,
-        serverIp: String,
-        serverHost: String,
-        encodedAdminKey: String,
-        adminUsername: String,
-        directory: String = "${homeDir()}/.chef",
-        hostsFile: String = "/etc/hosts"
+            serverUrl: String,
+            serverIp: String,
+            serverHost: String,
+            encodedAdminKey: String,
+            adminUsername: String,
+            directory: String = "${homeDir()}/.chef",
+            hostsFile: String = "/etc/hosts"
     ): Pair<String, String> {
         directory.createDirs()
         val adminKey = encodedAdminKey.base64Decode()
