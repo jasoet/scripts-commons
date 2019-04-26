@@ -17,7 +17,7 @@
 package id.jasoet.scripts
 
 import org.amshove.kluent.shouldBeFalse
-import org.amshove.kluent.shouldBeNull
+import org.amshove.kluent.shouldNotBeNull
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -33,7 +33,7 @@ object ExecuteSpec : Spek({
                 }
 
                 result.success.shouldBeFalse()
-                result.exception.shouldBeNull()
+                result.exception.shouldNotBeNull()
             }
         }
     }
