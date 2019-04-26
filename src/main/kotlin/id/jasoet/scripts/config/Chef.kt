@@ -16,7 +16,7 @@
 
 package id.jasoet.scripts.config
 
-import id.jasoet.scripts.ProcessHelper
+import id.jasoet.funkommand.execute
 import id.jasoet.scripts.base64Decode
 import id.jasoet.scripts.createDirs
 import id.jasoet.scripts.homeDir
@@ -56,6 +56,11 @@ object Chef {
     }
 
     fun executeSslFetch() {
-        ProcessHelper.executeToTempFile("knife ssl fetch")
+        val (statusCode, inputStream) = "knife ssl fetch".execute(output = System.out)
+        if (statusCode != 0 && inputStream != null) {
+            inputStream.use {
+                it.copyTo(System.err)
+            }
+        }
     }
 }

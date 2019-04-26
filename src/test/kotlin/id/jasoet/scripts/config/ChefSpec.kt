@@ -16,14 +16,12 @@
 
 package id.jasoet.scripts.config
 
-import id.jasoet.scripts.ProcessHelper
 import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.io.File
 import java.io.FileReader
 import java.util.Base64
-import kotlin.test.assertTrue
 
 
 object ChefSpec : Spek({
@@ -41,13 +39,13 @@ object ChefSpec : Spek({
         context("Initialize Chef Helper") {
             File(hostFile).delete()
             val (adminKeyPath, knifeConfigPath) = Chef(
-                serverUrl,
-                serverIp,
-                serverHost,
-                encodedAdminKey,
-                adminUsername,
-                chefConfigDirectory,
-                hostFile
+                    serverUrl,
+                    serverIp,
+                    serverHost,
+                    encodedAdminKey,
+                    adminUsername,
+                    chefConfigDirectory,
+                    hostFile
             )
             it("should produce correct admin key") {
                 val adminKeyContent = FileReader(adminKeyPath).readText()
@@ -73,14 +71,14 @@ object ChefSpec : Spek({
                 hostFileContent.shouldBeEqualTo("$serverIp $serverHost")
             }
         }
-        context("Execute ssl fetch") {
-            it("should produce redirect output to file") {
-                File(ProcessHelper.tmpStdOut).delete()
-                File(ProcessHelper.tmpStdErr).delete()
-                Chef.executeSslFetch()
-                assertTrue(File(ProcessHelper.tmpStdOut).exists(), "${ProcessHelper.tmpStdOut} should be exists")
-                assertTrue(File(ProcessHelper.tmpStdErr).exists(), "${ProcessHelper.tmpStdErr} should be exists")
-            }
-        }
+//        context("Execute ssl fetch") {
+//            it("should produce redirect output to file") {
+//                File(ProcessHelper.tmpStdOut).delete()
+//                File(ProcessHelper.tmpStdErr).delete()
+//                Chef.executeSslFetch()
+//                assertTrue(File(ProcessHelper.tmpStdOut).exists(), "${ProcessHelper.tmpStdOut} should be exists")
+//                assertTrue(File(ProcessHelper.tmpStdErr).exists(), "${ProcessHelper.tmpStdErr} should be exists")
+//            }
+//        }
     }
 })
