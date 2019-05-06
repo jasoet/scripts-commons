@@ -42,7 +42,9 @@ data class ExecutionResult(val success: Boolean, val out: File, val err: File, v
 }
 
 fun File.print(destination: PrintStream) {
-    destination.write(Files.readAllBytes(this.toPath()))
+    if(this.exists() && this.canRead()){
+        destination.write(Files.readAllBytes(this.toPath()))
+    }
 }
 
 object Execute {
