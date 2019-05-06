@@ -30,14 +30,13 @@ import java.util.concurrent.Executors
 
 data class ExecutionResult(val success: Boolean, val out: File, val err: File, val exception: Throwable? = null) {
     operator fun invoke(operation: (File, File, Throwable?) -> Unit) {
-        if (success) {
-            operation(out, err, exception)
-        }
+        operation(out, err, exception)
     }
 
     fun print() {
         out.print(System.out)
         err.print(System.err)
+        exception?.printStackTrace(System.err)
     }
 
 }
