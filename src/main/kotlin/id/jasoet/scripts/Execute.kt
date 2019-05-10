@@ -42,7 +42,7 @@ data class ExecutionResult(val success: Boolean, val out: File, val err: File, v
 }
 
 fun File.print(destination: PrintStream) {
-    if(this.exists() && this.canRead()){
+    if (this.exists() && this.canRead()) {
         destination.write(Files.readAllBytes(this.toPath()))
     }
 }
@@ -52,7 +52,7 @@ object Execute {
     operator fun invoke(
             out: File = createTempFile("system", "out"),
             err: File = createTempFile("system", "err"),
-            operation: suspend PrintStream.(PrintStream) -> Unit
+            operation: suspend CoroutineScope.(Pair<PrintStream, PrintStream>) -> Unit
     ): ExecutionResult {
         val dispatcher = Executors.newWorkStealingPool().asCoroutineDispatcher()
 
@@ -72,7 +72,7 @@ object Execute {
                     PrintStream(err).use { e ->
                         System.setOut(o)
                         System.setErr(e)
-                        operation(o, e)
+                        operation(o to e)
                     }
                 }
                 resetStream()
